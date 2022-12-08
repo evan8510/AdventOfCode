@@ -9,7 +9,7 @@ public class Day2 {
 	/*
 	 * Rock = 1 Paper = 2 Scissors= 3
 	 * 
-	 * 
+	 * f
 	 */
 
 	public static void main(String[] args) {

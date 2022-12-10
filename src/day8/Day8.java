@@ -9,6 +9,15 @@ public class Day8 {
 	/*
 	 * grid is 99x99
 	 */
+	
+	
+	/*
+	 * NOTE: 	for p2, could be done with a stack instead of an array of 10 elements
+	 * 			bottom of stack would be most recent largest element, on top of it
+	 * 			are the closer, smaller elements, pop off nodes from stack if current node
+	 * 			being looked at is larger than them, until either stack is empty, or the top node,
+	 * 			is of equal or greater size 
+	 */
 
 	public static void main(String[] args) {
 

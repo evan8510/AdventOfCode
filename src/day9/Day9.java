@@ -7,9 +7,6 @@ import java.util.Scanner;
 
 public class Day9 {
 
-	// Currently printing the 1 by 1 movements of head, next, compute movement of
-	// tail
-	// add nodes touched by tail to set touched
 
 	public static void main(String[] args) {
 

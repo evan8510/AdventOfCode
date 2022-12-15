@@ -43,6 +43,7 @@ public class Monkey2 {
 		var = str;
 	}
 	public boolean operation() {
+		// take item from front perform operation add back on
 		long old = items.remove();
 		long n = 0;
 		if(operator) {
@@ -57,13 +58,14 @@ public class Monkey2 {
 			else
 				n = (old+Long.parseLong(var));
 		}
-		n%=multiple;
+		n%=multiple; // multiple is divisible by all divisors, the remainder is all that determines the result
 		items.addFirst(n);
 		return (n%divisor)==0;
 	}
 
 	
 	public void pass() {
+		// pass all items
 		while(!items.isEmpty()) {
 			insp +=1;
 			if(operation()) 

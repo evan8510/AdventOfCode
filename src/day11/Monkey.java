@@ -42,6 +42,7 @@ public class Monkey {
 		var = str;
 	}
 	public boolean operation() {
+		// take item from front perform operation add back on
 		int old = items.remove();
 		int n = 0;
 		if(operator) {
@@ -63,6 +64,7 @@ public class Monkey {
 
 	
 	public void pass() {
+		// pass all items
 		while(!items.isEmpty()) {
 			insp +=1;
 			if(operation()) 

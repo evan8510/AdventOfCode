@@ -15,6 +15,8 @@ public class Day11p2 {
 		
 		int monkeyNum = 0;
 		LinkedList<Long> temp = new LinkedList<Long>();
+		
+		// read in data
 		try {
 			File f = new File("src/day11/d11input.txt");
 			Scanner s = new Scanner(f);
@@ -23,13 +25,13 @@ public class Day11p2 {
 				if(data[0].equals("Monkey")) {
 					monkeyNum = Integer.parseInt(data[1].trim().substring(0, 1));
 				}
-				if(data[0].equals("Starting")) {
+				if(data[0].equals("Starting")) { // add items to monkey
 					for(int i = 2;i<data.length;i++)
 						temp.add(Long.parseLong(data[i].replaceAll(",", "")));
 					monkeys[monkeyNum].setItems(temp); // send in worry levels to monkey
 					temp.clear();
 				}
-				if(data[0].equals("Operation:"))
+				if(data[0].equals("Operation:")) // add operation to monkey
 					monkeys[monkeyNum].setOperation(data[4].charAt(0), data[5]);
 				
 				if(data[0].equals("Test:")) 
@@ -47,14 +49,13 @@ public class Day11p2 {
 			e.printStackTrace();
 		}
 		
-		for(int i=0;i<10000;i++) {
+		for(int i=0;i<10000;i++) { // run the passing 10000 times
 			for(int j =0; j<monkeys.length;j++) {
 					monkeys[j].pass();
 			}
 		}
-		for(int j =0; j<monkeys.length;j++) {
-			System.out.println(monkeys[j].getSum());
-		}
+		
+		// get monkey business level
 		
 		long m1=0, m2=0;
 		for(int i=0; i<monkeys.length; i++) {

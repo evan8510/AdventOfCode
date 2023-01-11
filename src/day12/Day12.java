@@ -53,7 +53,7 @@ public class Day12 {
         
 
         Step start = steps[20][0];
-        setPths(start);
+        findEnd(start, steps[20][40]);
 
         System.out.println("\n\n");
         for(int i =0; i<41; i++){
@@ -71,7 +71,7 @@ public class Day12 {
         for (Step sig : first.getSigSteps()) {
                 System.out.println(sig.getNexts());
         }
-        System.out.println(steps[20][0].getSigDist(steps[20][1]));
+        System.out.println(steps[20][0].getSigDist(steps[20][40]));
         // put subsets into a tree, such that loops are dissalowed, if end of tree is a subset of 27 don't add branch
         // this is to eliminate large patches of 1s, 2s, 3s, and avoid stack overflow for larger datasets
 
@@ -94,6 +94,32 @@ public class Day12 {
                 setPths(nxt);
             }
         }
+    }
+
+    public static int findEnd(Step s, Step goal){
+        HashSet<Step> temp = new HashSet<Step>();
+        temp.add(s);
+        while(!s.getKeys().contains(goal)){
+            for(Step curr : s.getKeys()){
+                int x=100000000;
+                for(Blob nbr : curr.getParent().getNbrs()){
+                    for(Step nxt : nbr.getSigSteps()){
+                        x = getFastest(curr, nxt, temp);
+                        if(s.getKeys().contains(nxt)){
+                            if(s.getSigDist(nxt)>x);
+                            else s.addNextSig(nxt, x);
+                        }
+                    }
+                    temp.addAll(nbr);
+                }
+                temp.addAll(curr.getParent());
+            }
+            for (Step step : s.getKeys()) {
+                if(step.getCol()==goal.getCol() && step.getRow() == goal.getRow())
+                    return step.getSigDist(step);
+            }
+        }
+        return s.getSigDist(goal);
     }
 
     public static int getFastest(Step s, Step goal, HashSet<Step> temp){

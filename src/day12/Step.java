@@ -102,6 +102,10 @@ public class Step {
     public HashMap<Step,Integer> getNexts(){
         return nextSigs;
     }
+    public HashSet<Step> getKeys(){
+        HashSet<Step> temp = new HashSet<Step>(nextSigs.keySet());
+        return temp;
+    }
     public void addNextSig(Step s, int x){
         if(sig){
             if(nextSigs.containsKey(s)){
